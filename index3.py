@@ -7,7 +7,7 @@ print """Content-type: text/html\r\n\r\n
     </head>
     <body>
         <h2>The Forum </h2><br/>
-        <form method="post" action="login.py">
+        <form method="post" action="login2.py">
             username:<input type="text" name="username"><br/>
             password:<input type="text" name="password"><br/>
             <input type="submit" value="Submit">
