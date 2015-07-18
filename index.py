@@ -3,8 +3,6 @@ import cgi
 import cgitb
 import sqlite3
 
-# Create instance of FieldStorage
-
 
 def log_out(form):
     # Get data from fields

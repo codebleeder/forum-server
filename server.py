@@ -12,7 +12,7 @@ else:
     conn = sqlite3.connect('server.db')
     c = conn.cursor()
     c.execute(''' CREATE TABLE users
-              (username text, password text, active integer)''')
+              (username text, hash text, salt text, active integer)''')
     conn.commit()
     conn.close()
 
