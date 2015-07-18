@@ -52,7 +52,7 @@ def display_user_page():
     </form>
     ----------------------------------------------------------------------"""
     print """
-    <form action="login8.py" method="post" target="_blank">
+    <form action="login.py" method="post" target="_blank">
     <select name="dropdown">"""
     #<option value="Maths" selected>Maths</option>
     for i in file_list:
