@@ -11,7 +11,8 @@ def log_out(form):
     val = form.getvalue('log_out')
     conn = sqlite3.connect('server.db')
     c = conn.cursor()
-    c.execute("UPDATE users SET active = 0 WHERE active = 1")
+    cmd = "UPDATE users SET active = 0 WHERE active = ?"
+    c.execute(cmd, (1, ))
     conn.commit()
     conn.close()
     print "<h3> log out successful!</h3><br/>"

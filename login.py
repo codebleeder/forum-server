@@ -8,7 +8,8 @@ import os
 def get_active_user():
     conn = sqlite3.connect('server.db')
     c = conn.cursor()
-    c.execute("SELECT username FROM users WHERE active = 1")
+    cmd = "SELECT username FROM users WHERE active = ?"
+    c.execute(cmd, (1, ))
     username = c.fetchone()[0]
     conn.close()
     return username
@@ -28,7 +29,7 @@ def auth_user(f):
         <a href="http://localhost:8000/index.py">Go back/a>"""
     elif password == retrieved_password[0]:
         print """ password authentication successful!"""
-        c.execute("UPDATE users SET active = 1 WHERE username = ?", (username, ))
+        c.execute("UPDATE users SET active = ? WHERE username = ?", (1, username))
         conn.commit()
         conn.close()
         display_user_page()
@@ -153,6 +154,6 @@ elif 'filename' in form:
 elif 'dropdown' in form:
     delete_file(form)
 
-if 'new_password' in form and 'confirm_new_password' in form:
+elif 'new_password' in form and 'confirm_new_password' in form:
     change_password(form)
 

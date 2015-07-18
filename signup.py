@@ -16,10 +16,12 @@ print """Content-type: text/html\r\n\r\n
 if new_password == confirm_new_password:
     conn = sqlite3.connect('server.db')
     c = conn.cursor()
-    c.execute("SELECT rowid FROM users WHERE username = ?", (new_username,))
+    cmd = "SELECT rowid FROM users WHERE username = ?"
+    c.execute(cmd, (new_username,))
     data = c.fetchone()
     if data is None:
-        c.execute("INSERT INTO users (username, password) VALUES(?, ?)", (new_username, new_password))
+        cmd = "INSERT INTO users (username, password) VALUES(?, ?)"
+        c.execute(cmd, (new_username, new_password))
         conn.commit()
         conn.close()
 
