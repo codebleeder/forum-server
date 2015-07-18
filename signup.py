@@ -27,8 +27,8 @@ if new_password == confirm_new_password:
         makedirs(new_dir)
 
         print """
-        <h3>Congratulations! New account created. Go to your page:</h3><br/>
-        <a href="http://localhost:8000/app.py">My application page</a>
+        <h3>Congratulations! New account created. Log in using new account:</h3><br/>
+        <a href="http://localhost:8000/index4.py">Homee</a>
         """
     else:
         print """
