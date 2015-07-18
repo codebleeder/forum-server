@@ -33,7 +33,8 @@ def auth_user(f):
 
     conn = sqlite3.connect('server.db')
     c = conn.cursor()
-    c.execute("SELECT hash, salt FROM users WHERE username = ?", (username,))
+    cmd = "SELECT hash, salt FROM users WHERE username = ?"
+    c.execute(cmd, (username,))
     hash_salt = c.fetchone()
 
     if hash_salt is None:
@@ -41,7 +42,8 @@ def auth_user(f):
         <a href="http://localhost:8000/index.py">Go back/a>"""
     elif check_password(hash_salt, password):
         print """ password authentication successful!"""
-        c.execute("UPDATE users SET active = ? WHERE username = ?", (1, username))
+        cmd = "UPDATE users SET active = ? WHERE username = ?"
+        c.execute(cmd, (1, username))
         conn.commit()
         conn.close()
         display_user_page()
@@ -144,12 +146,14 @@ def change_password(f):
         new_hash_salt = generate_hash(new_password)
         conn = sqlite3.connect('server.db')
         c = conn.cursor()
-        c.execute("SELECT hash, salt FROM users WHERE username = ?", (username, ))
+        cmd = "SELECT hash, salt FROM users WHERE username = ?"
+        c.execute(cmd, (username, ))
         old_hash_salt = c.fetchone()
         if old_hash_salt == new_hash_salt:
             message = 'old and new passwords are the same! try again'
         else:
-            c.execute("UPDATE users SET hash = ?, salt = ? WHERE username = ?", (new_hash_salt[0], new_hash_salt[1], username))
+            cmd = "UPDATE users SET hash = ?, salt = ? WHERE username = ?"
+            c.execute(cmd, (new_hash_salt[0], new_hash_salt[1], username))
             conn.commit()
             message = 'password change successful!'
         conn.close()
