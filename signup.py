@@ -28,7 +28,7 @@ if new_password == confirm_new_password:
 
         print """
         <h3>Congratulations! New account created. Log in using new account:</h3><br/>
-        <a href="http://localhost:8000/index4.py">Homee</a>
+        <a href="http://localhost:8000/index.py">Homee</a>
         """
     else:
         print """
